@@ -20,13 +20,9 @@
 git clone https://github.com/napawam913-byte/energy-carbon-topic-2-2.git /workspace/energy-carbon-code
 ```
 
-本仓库为私有仓库，服务器须完成 GitHub 身份验证。本机 Codex 的 GitHub 登录不会自动转移到云端。
+本仓库为公开仓库，使用以上 HTTPS 地址克隆和拉取更新不需要登录 GitHub，也不需要令牌。公开不等于任何人都能直接修改仓库；推送代码仍需要有写权限的账号完成身份验证。
 
-- 已安装 GitHub CLI 时，可以在服务器执行 `gh auth login --hostname github.com --git-protocol https --web`，按提示用自己的浏览器授权，再执行 `gh auth setup-git --hostname github.com`。
-- 使用 HTTPS 提示输入密码时，需要访问令牌而非 GitHub 账号密码。建议 fine-grained token 仅选本仓库、Contents 只读，并设置有效期。
-- 长期只拉取代码的云端环境，也可使用仅授权本仓库的只读 SSH deploy key。私钥必须留在服务器，不能粘贴到聊天、仓库或命令行 URL 中。
-
-参考：[GitHub 克隆说明](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)、[访问令牌说明](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)。
+参考：[GitHub 克隆说明](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)。
 
 ## 数据与环境位置
 
