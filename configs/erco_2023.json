@@ -1,0 +1,17 @@
+{
+  "source": "data/processed/erco_2023_v1/observations.csv",
+  "input_columns": ["demand_mw", "generation_biomass_mwh", "generation_coal_mwh", "generation_hydro_mwh", "generation_natural_gas_mwh", "generation_nuclear_mwh", "generation_other_mwh", "generation_petroleum_mwh", "generation_solar_mwh", "generation_wind_mwh", "factor_generated_kg_per_mwh"],
+  "target_columns": ["generation_biomass_mwh", "generation_coal_mwh", "generation_hydro_mwh", "generation_natural_gas_mwh", "generation_nuclear_mwh", "generation_other_mwh", "generation_petroleum_mwh", "generation_solar_mwh", "generation_wind_mwh", "factor_generated_kg_per_mwh"],
+  "lookback": 168,
+  "horizon": 24,
+  "stride": 1,
+  "train_end": "2023-09-01T00:00:00Z",
+  "val_end": "2023-11-01T00:00:00Z",
+  "hidden_size": 128,
+  "learning_rate": 0.001,
+  "batch_size": 64,
+  "epochs": 20,
+  "patience": 5,
+  "seed": 42,
+  "num_workers": 0
+}
