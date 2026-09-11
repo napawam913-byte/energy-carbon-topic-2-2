@@ -41,7 +41,11 @@ def evaluate(args, output, record):
     if sha256(prepared/'manifest.json') != run['manifest_sha256']: raise ValueError('Manifest changed while loading')
     if manifest['source_sha256'] != run['source_sha256']: raise ValueError('Source SHA256 mismatch')
     if manifest['scalers'] != run['scalers']: raise ValueError('Saved scaler mismatch')
-    data.config = validate_config(run['config'])
+    config = validate_config(run['config'])
+    for name in ('source','input_columns','target_columns','lookback','horizon','stride','train_end','val_end'):
+        if config[name] != data.config[name]:
+            raise ValueError(f'Saved config {name} mismatch with preparation config')
+    data.config = config
     model = None
     if run['model'] == 'mlp':
         from energy_forecast.training import load_model

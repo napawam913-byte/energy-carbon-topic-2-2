@@ -133,6 +133,8 @@ class ForecastData:
 def prepare(root, config, output):
     output = new_output(output)
     try:
+        if isinstance(config, (str, Path)):
+            config = read_json(config)
         config = validate_config(config)
         source = (Path(root)/config['source']).resolve()
         digest = sha256(source)
