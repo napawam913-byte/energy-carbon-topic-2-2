@@ -1,0 +1,7 @@
+# 用途：跨 Windows/Linux 协作时统一仓库文本换行。
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
