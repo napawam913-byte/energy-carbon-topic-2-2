@@ -1,6 +1,7 @@
 """模块用途：临时合成数据的独立命令行端到端测试。"""
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -14,9 +15,21 @@ REPO = Path(__file__).resolve().parents[1]
 
 class CLITests(unittest.TestCase):
     def command(self,*args,ok=True):
-        result = subprocess.run([sys.executable,*map(str,args)],cwd=REPO,capture_output=True,text=True)
+        env = {**os.environ, 'PYTHONIOENCODING': 'utf-8'}
+        result = subprocess.run(
+            [sys.executable,*map(str,args)], cwd=REPO, capture_output=True,
+            text=True, encoding='utf-8', env=env,
+        )
         self.assertEqual(result.returncode == 0,ok,result.stdout+result.stderr)
         return result
+
+    def test_command_decodes_utf8_output(self):
+        result = self.command(
+            '-c',
+            "import sys; print('标准输出'); print('错误输出', file=sys.stderr)",
+        )
+        self.assertEqual(result.stdout.strip(), '标准输出')
+        self.assertEqual(result.stderr.strip(), '错误输出')
 
     def test_all_models_and_failures(self):
         frame, config = synthetic()
